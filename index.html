@@ -104,12 +104,18 @@
         // Preparatory Functions - calculations and preparations
         function calculateArrow(angle) {
           radian = Math.PI / 180 * angle;
-          lineX = -(Math.cos(radian) * 646 - x);
-          lineY = -(Math.sin(radian) * 646 - y - radius);
+          lineX = -(Math.cos(radian) * 700 - x);
+          lineY = -(Math.sin(radian) * 700 - y - radius);
+
+          // if (lineX > 480) { lineX = 480 }
+          // else if (lineX < 0) { lineX = 0 }
+          //
+          // if (lineY < 0) {lineY = 0 }
+          // console.log(lineX, lineY)
         }
 
         function calculateSpeed(angle, ball) {
-          let theta = Math.atan((lineY - ball.y)/(lineX - ball.x))
+          let theta = Math.atan((lineY - ball.y - radius)/(lineX - ball.x))
           let theta_a = theta * 180 / Math.PI
           let dxValue, dyValue;
           if (theta_a > 0) {
@@ -259,7 +265,7 @@
           ctx.beginPath();
           ctx.setLineDash([3]);
           ctx.moveTo(x, y);
-          ctx.lineTo(lineX, lineY);
+          ctx.lineTo(lineX, lineY) ;
           ctx.strokeStyle = '#C0C0C0'
           ctx.stroke();
         }
