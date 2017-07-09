@@ -1,0 +1,146 @@
+.button {
+  padding-top: 5px;
+}
+
+.buttons {
+  align: left;
+  display: flex;
+  justify-content: space-between;
+  width: 400px;
+  list-style-type: none;
+  margin-top: 5px;
+  position:relative;
+}
+
+#left, #right {
+  opacity: 0.4;
+  width: 90px;
+}
+
+#space {
+  width: 300px;
+  height: 92px;
+}
+
+#logo {
+  opacity: 0.55;
+  width: 480px;
+}
+
+.game-container {
+  width: 480px;
+  height : 600px;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 20px;
+}
+
+#canvas {
+  background: #eee;
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
+  width: 480;
+  height: 600;
+  position: relative;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 780px;
+  /*bottom: 110px;*/
+  /*z-index: -1;*/
+}
+
+.name {
+  font-size: 12px;
+  color: gray;
+  font-family: Sans-serif;
+  font-style: italic;
+}
+
+.links {
+  position: relative;
+  margin-left: 280px;
+  /*margin-right: 5px;*/
+  color: gray;
+}
+
+.icon {
+  color: gray;
+}
+
+#welcome-modal {
+  position: absolute;
+  right: 2px;
+  z-index: 1;
+  right: 70px;
+  top: 150px;
+
+  background-color: white;
+  width: 300px;
+  height: 305px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 20px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.info-img {
+  width: 20px;
+}
+
+.sbar-img {
+  width: 70px;
+}
+
+.info-img, .sbar-img {
+  position: relative;
+  top: 5px;
+}
+
+.favicon-info {
+  position: relative;
+  top: 3px;
+}
+
+.hidden {
+  display: none;
+}
+
+#gameover-modal {
+  position: absolute;
+  right: 2px;
+  z-index: 1;
+  right: 70px;
+  top: 150px;
+  text-align: center;
+
+  background-color: white;
+  width: 300px;
+  height: 305px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 20px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.score-number {
+  font-size: 80px;
+  text-align: center;
+  font-weight: bolder;
+  margin-top: 65px;
+  margin-bottom: 65px;
+}
+
+.secret-inst {
+  color: gray;
+  position: absolute;
+  font-size: 12px;
+  font-family: 'Quicksang', sans-serif;
+  font-weight: lighter;
+  top: 35px;
+  left: 115px;
+}

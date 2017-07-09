@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './lib/break.js',
+  entry: './lib/breakbrick.js',
   output: {
     filename: './lib/bundle.js'
   },
