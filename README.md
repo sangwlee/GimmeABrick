@@ -2,9 +2,9 @@
 
 GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, following spin-off has been applied:
 
-1. There is not paddle, once the ball(s) hits bottom, it is caught.
-2. Caught ball(s) can be aimed and released towards the player's choice of direction.
-3. New ball is gained every five rounds.
+1. There is no paddle, once the balls hit bottom, they are caught.
+2. Caught balls can be aimed and released towards the player's choice of direction.
+3. A new ball is gained every five rounds.
 
 ### Notable Implementations
 
@@ -15,8 +15,8 @@ GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, fo
 ### Bricks and balls
 
 Bricks and balls are essential to GimmeABrick. These two components of the game are constantly drawn on the board in interval.
-While the balls are in motion, their collision with bricks are constantly tested by considering if the ball's radius is within the bricks' area.
-When the balls and bricks collide, bricks are "removed" from the game by changing its status.
+While the balls are in motion, their collision with bricks are constantly tested by checking if the balls' coordinates are within the bricks' coordinates.
+When the coordinates of the bricks and balls overlap, they have "collided". As result of collision, bricks will change its status, being "removed" from the game. Balls will change their direction accordingly to how they hit bricks.
 
 ```javascript
     function drawBricks() {
@@ -56,6 +56,25 @@ When the balls and bricks collide, bricks are "removed" from the game by changin
     balls.forEach(ball => {
       drawBall(ball.x, ball.y, radius);
     })
+```
+
+```javascript
+    function collisionDetection(ball) {
+      for (var c = 0; c < brickColumnCount; c++) {
+        for (var r = 0; r < brickRowCount; r++) {
+          var b = bricks[c][r];
+          if (b.status > 0) {
+            if (ball.x > b.x - radius &&
+                ball.x < b.x + brickWidth + radius &&
+                ball.y > b.y - radius &&
+                ball.y < b.y + brickHeight + radius) {
+                ball.dy = -ball.dy;
+                b.status -= 1;
+            }
+          }
+        }
+      }
+    }
 ```
 
 ### New levels
