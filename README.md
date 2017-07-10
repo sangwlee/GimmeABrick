@@ -10,7 +10,7 @@ GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, fo
 
   1. [Bricks and Balls](#bricks-and-balls)
   2. [New levels](#new-levels)
-  3. [Calculating balls' speed and direction](#calculating-balls'-speed-and-direction)
+  3. [Calculating speed and direction](#calculating-speed-and-direction)
 
 ### Bricks and balls
 
@@ -103,7 +103,7 @@ Within the game, new level is reached whenever all balls are caught at the botto
     }
 ```
 
-### Calculating balls' speed and directio
+### Calculating speed and direction
 
 Perhaps one of the most challenging aspects of the game was to allow player to choose an angle and make sure all balls' directions are changed accordingly. One thing to note is that while their direction may change, their speed must stay constant. To solve this problem, trigonometry from high school has been revisited.
 
