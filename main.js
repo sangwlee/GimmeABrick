@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let x = canvas.width / 2;
   let y = canvas.height - radius;
 
-  let speed = 2;
+  let speed = 2.5;
   let dx = 0;
   let dy = -1 * speed;
   let lineX = canvas.width/2;
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function calculateSpeed(angle, ball) {
-    let theta = Math.atan((lineY - ball.y - radius)/(lineX - ball.x));
+    let theta = Math.atan((lineY - ball.y - radius * 2)/(lineX - ball.x));
     let theta_a = theta * 180 / Math.PI;
     let dxValue, dyValue;
     if (theta_a > 0) {
@@ -217,10 +217,20 @@ document.addEventListener("DOMContentLoaded", () => {
           bricks[c][r].x = brickX;
           bricks[c][r].y = brickY;
           ctx.beginPath();
+          let red, green, blue;
+          if (level < 50) {
+            red = 285 - bricks[c][r].status * 5;
+            green = 180 - bricks[c][r].status * 7;
+            blue = 100 - bricks[c][r].status * 2;
+          } else {
+            red = 70 - (bricks[c][r].status - 50) * (5);
+            green = 145 - (bricks[c][r].status - 50) * (7);
+            blue = 170 - (bricks[c][r].status - 50) * (2);
+          }
           ctx.fillStyle = `rgb(
-            ${285 - bricks[c][r].status * 5},
-            ${180 - bricks[c][r].status * 7},
-            ${100 - bricks[c][r].status * 2})`;
+            ${red},
+            ${green},
+            ${blue})`;
           ctx.rect(brickX, brickY, brickWidth, brickHeight);
           ctx.fill();
         }
@@ -335,5 +345,5 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("keydown", keyDownHandler, false);
   document.addEventListener("keyup", keyUpHandler, false);
   document.addEventListener("click", removeModal, false);
-  setInterval(draw, 0.5);
+  setInterval(draw, 1);
 });
