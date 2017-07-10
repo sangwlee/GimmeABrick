@@ -11,12 +11,44 @@ GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, fo
 ### Notable Implementations
 
   1. [Bricks and Balls](#bricks-and-balls)
-  2. [New levels](#new-levels)
-  3. [Calculating speed and direction](#calculating-speed-and-direction)
+  2. [Calculating speed and direction](#calculating-speed-and-direction)
+  3. [New levels](#new-levels)
+
+Basic attributes & external variables:
+
+  ```javascript
+      let canvas = document.getElementById("canvas");
+      let ctx = canvas.getContext("2d");
+
+      let brickRowCount = 4;
+      let brickColumnCount = 5;
+      let brickWidth = 79.5;
+      let brickHeight = 20;
+      let brickPadding = 6;
+      let brickOffsetTop = 30;
+      let brickOffsetLeft = 30;
+
+      let speed = 2.5;
+      let dx = 0;
+      let dy = -1 * speed;
+      let lineX = canvas.width/2;
+      let lineY = 0;
+      let angle = 90;
+      let radian;
+
+      let balls = [{ x: canvas.width / 2, y: canvas.height - radius, dx, dy }];
+      let bricks = [
+        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
+        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
+        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
+        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
+        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
+      ];
+  ```
 
 ### Bricks and balls
 
-Bricks and balls are essential to GimmeABrick. These two components of the game are constantly drawn on the board in interval.
+Bricks and balls are essential to GimmeABrick. These two components of the game are constantly drawn on the board in an interval.
 While the balls are in motion, their collision with bricks are constantly tested by checking if the balls' coordinates are within the bricks' coordinates.
 When the coordinates of the bricks and balls overlap, they have "collided". As result of collision, bricks will change its status, being "removed" from the game. Balls will change their direction accordingly to how they hit bricks.
 
@@ -37,10 +69,7 @@ When the coordinates of the bricks and balls overlap, they have "collided". As r
               ${100 - bricks[c][r].status * 2})`;
             ctx.rect(brickX, brickY, brickWidth, brickHeight);
             ctx.fill();
-          }
-        }
-      }
-      gameOver();
+          }}}
     }
 ```
 
@@ -72,39 +101,9 @@ When the coordinates of the bricks and balls overlap, they have "collided". As r
                 ball.y < b.y + brickHeight + radius) {
                 ball.dy = -ball.dy;
                 b.status -= 1;
-            }
-          }
-        }
-      }
+            }}}}
     }
 ```
-
-### New levels
-
-Within the game, new level is reached whenever all balls are caught at the bottom. Upon initiating new level function, it will increase the current level by one, increase rows of bricks, and increase the number of balls every five levels.
-
-```javascript
-    function newLevel() {
-      level += 1;
-      brickRowCount += 1;
-
-      bricks.forEach(c => {
-        c.unshift(undefined)
-      })
-
-      if (level % 5 === 0) {
-        balls.push({x: canvas.width / 2, y: canvas.height - radius, dx, dy})
-      }
-
-      balls.forEach(ball => {
-        calculateSpeed(angle, ball)
-      })
-      calculateArrow(angle);
-      prepareBricks();
-      draw();
-    }
-```
-
 ### Calculating speed and direction
 
 Perhaps one of the most challenging aspects of the game was to allow player to choose an angle and make sure all balls' directions are changed accordingly. One thing to note is that while their direction may change, their speed must stay constant. To solve this problem, trigonometry from high school has been revisited.
@@ -133,6 +132,32 @@ Perhaps one of the most challenging aspects of the game was to allow player to c
       ball.dx = dxValue;
       ball.dy = dyValue;
     }
+```
+### New levels
+
+Within the game, new level is reached whenever all balls are caught at the bottom. Upon initiating new level function, it will increase the current level by one, increase rows of bricks, and increase the number of balls every five levels.
+
+```javascript
+function newLevel() {
+  level += 1;
+  brickRowCount += 1;
+
+  bricks.forEach(c => {
+    c.unshift(undefined)
+  })
+
+  if (level % 5 === 0) {
+    balls.push({x: canvas.width / 2, y: canvas.height - radius, dx, dy})
+  }
+
+  balls.forEach(ball => {
+    calculateSpeed(angle, ball)
+  })
+
+  calculateArrow(angle);
+  prepareBricks();
+  draw();
+}
 ```
 
 ### Future Implementations & thoughts
