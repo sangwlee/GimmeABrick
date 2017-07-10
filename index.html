@@ -106,12 +106,6 @@
           radian = Math.PI / 180 * angle;
           lineX = -(Math.cos(radian) * 700 - x);
           lineY = -(Math.sin(radian) * 700 - y - radius);
-
-          // if (lineX > 480) { lineX = 480 }
-          // else if (lineX < 0) { lineX = 0 }
-          //
-          // if (lineY < 0) {lineY = 0 }
-          // console.log(lineX, lineY)
         }
 
         function calculateSpeed(angle, ball) {
@@ -210,7 +204,6 @@
           calculateArrow(angle);
           prepareBricks();
           draw();
-
         }
 
         function reset() {

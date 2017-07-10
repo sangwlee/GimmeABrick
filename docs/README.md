@@ -1,8 +1,8 @@
-## JS Project Proposal: BreakBrick
+## JS Project Proposal: GimmeABrick
 
 ### Background
 
-BreakBrick is a clone of popular mobile game, Swipe Brick Breaker. Basic rules:
+GimmeABrick is inspired by a well-known classical game, Brick Breaker. Basic rules:
 
 1) Basic Principle: Ball is moved when the user initiates it, when it hits a brick a number of times, brick breaks.
 2) Level increases every round, with level, the number of balls increase as well as the number of times you need to hit the bicks.
@@ -11,7 +11,7 @@ BreakBrick is a clone of popular mobile game, Swipe Brick Breaker. Basic rules:
 
 ### Functionality & MVP  
 
-MVP's of BreakBrick:
+MVP's of GimmeABrick:
 
 - [ ] Generate initial ball and bricks.
 - [ ] Destroy the bricks when the ball contacts them.
