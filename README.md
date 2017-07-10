@@ -1,5 +1,7 @@
 ## GimmeABrick
 
+[LIVE](http://sangwlee.com/Nom-Nom-Dom/)
+
 GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, following spin-off has been applied:
 
 1. There is no paddle, once the balls hit bottom, they are caught.
@@ -136,6 +138,6 @@ Perhaps one of the most challenging aspects of the game was to allow player to c
 ### Future Implementations & thoughts
 GimmeABrick is a game built with stress-relief in mind. This game should be played when someone is stressed and just wants to see some pretty colors, balls bounce off in unison, bricks come down one after another, etc.
 
-For future additions, the game can use an option to set difficulty level. Though the game was intended for stress-free play (when you need a break), there definitely are players out there who seek challenge.
+For future additions, the game can use an option to set difficulty level. Choosing a certain difficulty level should increase durability of the bricks, levels when a new ball is achieved, and increasing the number of rows gained. Though the game was intended for stress-free play (when you need a break), there definitely are players out there who seek challenge.
 
 In addition to adjusting difficulty level of the game, it will be nice to include sound effects where appropriate.
