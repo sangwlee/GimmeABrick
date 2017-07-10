@@ -1,6 +1,6 @@
 ## GimmeABrick
 
-[LIVE](http://sangwlee.com/Nom-Nom-Dom/)
+[LIVE](http://sangwlee.com/GimmeABrick/)
 
 GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, following spin-off has been applied:
 
