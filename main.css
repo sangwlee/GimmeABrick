@@ -169,3 +169,7 @@ html {
   overflow-x: hidden;
   overflow-y: hidden;
 }
+
+img[alt=manyballs] {
+  width: 100px;
+}
