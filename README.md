@@ -3,8 +3,8 @@
 
 <div style="display: flex; justify-content: space-between;">
 <img src="./images/gamestart.gif" width="260">
-<img src="./images/manyballs.gif" width="300">
-<img src="./images/gameover.gif" width="300">
+<img src="./images/manyballs.gif" width="290">
+<img src="./images/gameover.gif" width="280">
 </div>
 
 GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, following spin-off has been applied:
