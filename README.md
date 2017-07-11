@@ -1,6 +1,8 @@
 ## GimmeABrick
 
-[LIVE](http://sangwlee.com/GimmeABrick/)
+(/images/gameover.gif)
+(/images/gamestart.gif)
+(/images/manyballs.gif)
 
 GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, following spin-off has been applied:
 

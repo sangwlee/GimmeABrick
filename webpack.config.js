@@ -1,7 +1,19 @@
+var path = require("path");
+
 module.exports = {
-  entry: './lib/breakbrick.js',
+  context: __dirname,
+  entry: "./lib/main.jsx",
   output: {
-    filename: './lib/bundle.js'
+    path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
+    filename: "bundle.js"
   },
-  devtool: 'source-map',
+  module: {
+    loaders: [
+      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
+    ]
+  },
+  devtool: 'source-maps',
+  resolve: {
+    extensions: [".js", ".jsx", "*"]
+  }
 };
