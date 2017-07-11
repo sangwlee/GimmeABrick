@@ -1,7 +1,7 @@
 ## GimmeABrick
 [LIVE](http://sangwlee.com/GimmeABrick/)
 
-![Giphy](/images/gamestart.gif =100x20)
+![Giphy](/images/gamestart.gif)
 ![Giphy](/images/manyballs.gif)
 ![Giphy](/images/gameover.gif)
 
