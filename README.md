@@ -2,7 +2,7 @@
 [LIVE](http://sangwlee.com/GimmeABrick/)
 
 ![gamestart](/images/gamestart.gif)
-![manyballs](/images/manyballs.gif)
+<img src="./images/manyballs.gif" width="48">
 ![gameover](/images/gameover.gif)
 
 
