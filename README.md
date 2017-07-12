@@ -21,38 +21,6 @@ GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, fo
   2. [Calculating speed and direction](#calculating-speed-and-direction)
   3. [New levels](#new-levels)
 
-Basic attributes & external variables:
-
-  ```javascript
-      let canvas = document.getElementById("canvas");
-      let ctx = canvas.getContext("2d");
-
-      let brickRowCount = 4;
-      let brickColumnCount = 5;
-      let brickWidth = 79.5;
-      let brickHeight = 20;
-      let brickPadding = 6;
-      let brickOffsetTop = 30;
-      let brickOffsetLeft = 30;
-
-      let speed = 2.5;
-      let dx = 0;
-      let dy = -1 * speed;
-      let lineX = canvas.width/2;
-      let lineY = 0;
-      let angle = 90;
-      let radian;
-
-      let balls = [{ x: canvas.width / 2, y: canvas.height - radius, dx, dy }];
-      let bricks = [
-        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
-        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
-        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
-        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
-        [{x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}, {x : 0, y : 0, status: 1}],
-      ];
-  ```
-
 ### Bricks and balls
 
 Bricks and balls are essential to GimmeABrick. These two components of the game are constantly drawn on the board in an interval.
@@ -60,28 +28,50 @@ While the balls are in motion, their collision with bricks are constantly tested
 When the coordinates of the bricks and balls overlap, they have "collided". As result of collision, bricks will change its status, being "removed" from the game. Balls will change their direction accordingly to how they hit bricks.
 
 ```javascript
-    function drawBricks() {
+    drawBricks() {
+      this.prepareBricks();
       for (var c = 0; c < brickColumnCount; c++ ) {
         for (var r = 0; r < brickRowCount; r++) {
 
           if (bricks[c][r].status > 0) {
-            brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
-            brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+            let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
+            let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
             bricks[c][r].x = brickX;
             bricks[c][r].y = brickY;
             ctx.beginPath();
+            let red, green, blue;
+            if (bricks[c][r].status < 40) {
+              red = 285 - bricks[c][r].status * 5;
+              green = 180 - bricks[c][r].status * 7;
+              blue = 100 - bricks[c][r].status * 2;
+            } else if (bricks[c][r].status < 80) {
+              red = 100 + (bricks[c][r].status - 40) * (5);
+              green = 180 + (bricks[c][r].status - 40) * (7);
+              blue = 285 + (bricks[c][r].status - 40) * (2);
+            } else if (bricks[c][r].status < 120) {
+              red = 180 + (bricks[c][r].status - 80) * (5);
+              green = 285 + (bricks[c][r].status - 80) * (7);
+              blue = 100 + (bricks[c][r].status - 80) * (2);
+            } else {
+              red = 169 + (bricks[c][r].status - 120) * (5);
+              green = 169 + (bricks[c][r].status - 120) * (7);
+              blue = 169 + (bricks[c][r].status - 120) * (2);
+            }
             ctx.fillStyle = `rgb(
-              ${285 - bricks[c][r].status * 5},
-              ${180 - bricks[c][r].status * 7},
-              ${100 - bricks[c][r].status * 2})`;
+              ${red},
+              ${green},
+              ${blue})`;
             ctx.rect(brickX, brickY, brickWidth, brickHeight);
             ctx.fill();
-          }}}
+          }
+        }
+      }
+      this.gameOver();
     }
 ```
 
 ```javascript
-    function drawBall(x, y, radius) {
+    drawBall(x, y) {
       ctx.beginPath();
       ctx.arc(x, y, radius, 0, Math.PI*2);
       ctx.fillStyle = "#0095DD";
@@ -91,13 +81,7 @@ When the coordinates of the bricks and balls overlap, they have "collided". As r
 ```
 
 ```javascript
-    balls.forEach(ball => {
-      drawBall(ball.x, ball.y, radius);
-    })
-```
-
-```javascript
-    function collisionDetection(ball) {
+    collisionDetection(ball) {
       for (var c = 0; c < brickColumnCount; c++) {
         for (var r = 0; r < brickRowCount; r++) {
           var b = bricks[c][r];
@@ -142,34 +126,29 @@ Perhaps one of the most challenging aspects of the game was to allow player to c
 ```
 ### New levels
 
-Within the game, new level is reached whenever all balls are caught at the bottom. Upon initiating new level function, it will increase the current level by one, increase rows of bricks, and increase the number of balls every five levels.
+Within the game, new level is reached at certain time intervals. Upon achieving a new level, game will increase the current level by one, increase rows of bricks, and increase the number of balls every five levels.
 
 ```javascript
-function newLevel() {
-  level += 1;
-  brickRowCount += 1;
+    newLevel() {
+      if (gameoverModalClosed && gameStarted) {
+        level += 1;
+        brickRowCount += 1;
 
-  bricks.forEach(c => {
-    c.unshift(undefined)
-  })
+        bricks.forEach(c => {
+          c.unshift(undefined);
+        });
 
-  if (level % 5 === 0) {
-    balls.push({x: canvas.width / 2, y: canvas.height - radius, dx, dy})
-  }
+        if (level % 5 === 0) {
+          balls.push({x: canvas.width / 2, y: canvas.height - radius, dx: 0, dy: 0});
+        }
 
-  balls.forEach(ball => {
-    calculateSpeed(angle, ball)
-  })
-
-  calculateArrow(angle);
-  prepareBricks();
-  draw();
-}
+        this.calculateArrow(angle);
+        this.prepareBricks();
+      }
+    }
 ```
 
 ### Future Implementations & thoughts
-GimmeABrick is a game built with stress-relief in mind. This game should be played when someone is stressed and just wants to see some pretty colors, balls bounce off in unison, bricks come down one after another, etc.
-
-For future additions, the game can use an option to set difficulty level. Choosing a certain difficulty level should increase durability of the bricks, increase level interval when a new ball is achieved, and increasing the number of rows gained. Though the game was intended for stress-free play (when you need a break), there definitely are players out there who seek challenge.
+For future additions, the game can use an option to set difficulty level. Choosing a certain difficulty level should increase durability of the bricks, increase level interval when a new ball is achieved, and increasing the number of rows gained. 
 
 In addition to adjusting difficulty level of the game, it will be nice to include sound effects where appropriate.
