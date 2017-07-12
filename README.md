@@ -21,7 +21,7 @@ GimmeABrick is inspired by a well-known classical game, Brick Breaker. To it, fo
   2. [Calculating speed and direction](#calculating-speed-and-direction)
   3. [New levels](#new-levels)
 
-### Bricks and balls
+### Bricks and Balls
 
 Bricks and balls are essential to GimmeABrick. These two components of the game are constantly drawn on the board in an interval.
 While the balls are in motion, their collision with bricks are constantly tested by checking if the balls' coordinates are within the bricks' coordinates.
