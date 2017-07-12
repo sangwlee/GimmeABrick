@@ -25,6 +25,12 @@
 #logo {
   opacity: 0.55;
   width: 480px;
+  /*position: absolute;*/
+}
+
+#logo:hover {
+  cursor: pointer;
+  opacity: 1;
 }
 
 .game-container {
@@ -81,10 +87,10 @@
 
   background-color: white;
   width: 300px;
-  height: 305px;
+  height: 450px;
   border: 1px solid lightgray;
   border-radius: 5px;
-  padding: 20px;
+  padding: 30px;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -147,8 +153,8 @@
 
 .bg1 {
   width: 800px;
-  opacity: 0.07;
-  left: -20%;
+  opacity: 0.12;
+  left: -15%;
   position: absolute;
   top: 2px;
   z-index: -1;
@@ -156,10 +162,10 @@
 
 .bg2 {
   width: 800px;
-  opacity: 0.07;
+  opacity: 0.12;
   position: absolute;
   top: 600px;
-  left: 80%;
+  left: 70%;
   z-index: -1;
 }
 
@@ -172,4 +178,13 @@ html {
 
 img[alt=manyballs] {
   width: 100px;
+}
+
+strong {
+  font-style: italic;
+  font-weight: bolder;
+}
+
+#welcome-modal > ul > li{
+  font-size: 15px;
 }
