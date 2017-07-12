@@ -97,7 +97,7 @@ When the coordinates of the bricks and balls overlap, they have "collided". As r
 ```
 ### Calculating speed and direction
 
-Perhaps one of the most challenging aspects of the game was to allow player to choose an angle and make sure all balls' directions are changed accordingly. One thing to note is that while their direction may change, their speed must stay constant. To solve this problem, trigonometry from high school has been revisited.
+Perhaps one of the most challenging aspects of the game was to allow player to choose an angle and make sure all balls' directions are changed accordingly. One thing to note is that while their direction may change, their speed must stay constant. To implement this, good old trigonometry from high school has been revisited.
 
 ```javascript
     function calculateArrow(angle) {
@@ -149,6 +149,6 @@ Within the game, new level is reached at certain time intervals. Upon achieving 
 ```
 
 ### Future Implementations & thoughts
-For future additions, the game can use an option to set difficulty level. Choosing a certain difficulty level should increase durability of the bricks, increase level interval when a new ball is achieved, and increasing the number of rows gained. 
+For future additions, the game can use an option to set difficulty level. Choosing a certain difficulty level should increase durability of the bricks, increase level interval when a new ball is achieved, and increasing the number of rows gained.
 
 In addition to adjusting difficulty level of the game, it will be nice to include sound effects where appropriate.
