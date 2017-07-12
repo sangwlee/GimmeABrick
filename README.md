@@ -39,28 +39,10 @@ When the coordinates of the bricks and balls overlap, they have "collided". As r
             bricks[c][r].x = brickX;
             bricks[c][r].y = brickY;
             ctx.beginPath();
-            let red, green, blue;
-            if (bricks[c][r].status < 40) {
-              red = 285 - bricks[c][r].status * 5;
-              green = 180 - bricks[c][r].status * 7;
-              blue = 100 - bricks[c][r].status * 2;
-            } else if (bricks[c][r].status < 80) {
-              red = 100 + (bricks[c][r].status - 40) * (5);
-              green = 180 + (bricks[c][r].status - 40) * (7);
-              blue = 285 + (bricks[c][r].status - 40) * (2);
-            } else if (bricks[c][r].status < 120) {
-              red = 180 + (bricks[c][r].status - 80) * (5);
-              green = 285 + (bricks[c][r].status - 80) * (7);
-              blue = 100 + (bricks[c][r].status - 80) * (2);
-            } else {
-              red = 169 + (bricks[c][r].status - 120) * (5);
-              green = 169 + (bricks[c][r].status - 120) * (7);
-              blue = 169 + (bricks[c][r].status - 120) * (2);
-            }
             ctx.fillStyle = `rgb(
-              ${red},
-              ${green},
-              ${blue})`;
+              ${285 - bricks[c][r].status * 3},
+              ${180 - bricks[c][r].status * 4},
+              ${100 - bricks[c][r].status * 1})`;
             ctx.rect(brickX, brickY, brickWidth, brickHeight);
             ctx.fill();
           }
