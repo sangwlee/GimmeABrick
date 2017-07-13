@@ -72,6 +72,8 @@ When the coordinates of the bricks and balls overlap, they have "collided". As r
                 ball.x < b.x + brickWidth + radius &&
                 ball.y > b.y - radius &&
                 ball.y < b.y + brickHeight + radius) {
+                b.sound.volume = volume;
+                b.sound.play();
                 ball.dy = -ball.dy;
                 b.status -= 1;
             }}}}
@@ -82,7 +84,7 @@ When the coordinates of the bricks and balls overlap, they have "collided". As r
 Perhaps one of the most challenging aspects of the game was to allow player to choose an angle and make sure all balls' directions are changed accordingly. One thing to note is that while their direction may change, their speed must stay constant. To implement this, good old trigonometry from high school has been revisited.
 
 ```javascript
-    function calculateArrow(angle) {
+    calculateArrow() {
       radian = Math.PI / 180 * angle;
       lineX = -(Math.cos(radian) * 700 - x);
       lineY = -(Math.sin(radian) * 700 - y - radius);
@@ -90,9 +92,9 @@ Perhaps one of the most challenging aspects of the game was to allow player to c
 ```
 
 ```javascript
-    function calculateSpeed(angle, ball) {
-      let theta = Math.atan((lineY - ball.y - radius)/(lineX - ball.x))
-      let theta_a = theta * 180 / Math.PI
+    calculateSpeed(angle, ball) {
+      let theta = Math.atan((lineY - ball.y - radius)/(lineX - ball.x));
+      let theta_a = theta * 180 / Math.PI;
       let dxValue, dyValue;
       if (theta_a > 0) {
         dxValue = -(Math.cos(theta) * speed);
@@ -121,16 +123,18 @@ Within the game, new level is reached at certain time intervals. Upon achieving 
         });
 
         if (level % 5 === 0) {
-          balls.push({x: canvas.width / 2, y: canvas.height - radius, dx: 0, dy: 0});
+          balls.push({x: canvas.width / 2, y: canvas.height - radius, dx: 0, dy: 0, sound:  new Audio('./sounds/bounce_sound.mp3')});
         }
 
         this.calculateArrow(angle);
         this.prepareBricks();
+
+        if (level % 10) {
+          difficulty += 0.05;
+        }
       }
     }
 ```
 
 ### Future Implementations & thoughts
 For future additions, the game can use an option to set difficulty level. Choosing a certain difficulty level should increase durability of the bricks, increase level interval when a new ball is achieved, and increasing the number of rows gained.
-
-In addition to adjusting difficulty level of the game, it will be nice to include sound effects where appropriate.
