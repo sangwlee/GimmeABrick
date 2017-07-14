@@ -74,8 +74,22 @@
   color: gray;
 }
 
+
+.name > a {
+  text-decoration: none;
+  color: gray;
+}
+
+.name > a:hover {
+  color: blue;
+}
+
 .icon {
   color: gray;
+}
+
+.links > a:hover {
+  color: blue;
 }
 
 #welcome-modal {
